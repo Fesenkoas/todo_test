@@ -55,7 +55,7 @@ export const App = () => {
         <div>
           {tasks.length === 0 ? (
             <p className="text-gray-500 text-center">
-              Нет задач для отображения
+            No tasks to display
             </p>
           ) : (
             <ul className="space-y-2">

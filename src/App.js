@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 import { FaTrashAlt, FaPlus } from "react-icons/fa";
 
 export const App = () => {
+  //стейт общих задач с проверкой, имеется ли локальное хранилище при первой загрузке страницы
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem("tasks");
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
+
+  //временный стейт для новои задачи 
   const [newTask, setNewTask] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
+  //кнопка добавления задичи в список
   const addTask = () => {
     if (newTask.trim()) {
       setTasks([...tasks, { text: newTask, completed: false }]);
@@ -19,10 +19,12 @@ export const App = () => {
     }
   };
 
+  //кнопка удаления задачи из списка
   const deleteTask = (id) => {
     setTasks(tasks.filter((task, index) => index !== id));
   };
 
+  //чек выполения задачи
   const toggleComplete = (id) => {
     setTasks(
       tasks.map((task, key) =>
@@ -30,6 +32,11 @@ export const App = () => {
       )
     );
   };
+
+  //при обовлении стейта, рендерится страница и сохраняет список в локальное хранилище  
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">

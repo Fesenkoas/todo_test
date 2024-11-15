@@ -8,7 +8,7 @@ function loadFromLocalStorage() {
   return savedTasks ? JSON.parse(savedTasks) : [];
 }
 
-function App() {
+export const App=()=> {
   const [tasks, setTasks] = useState(loadFromLocalStorage);
 
   useEffect(() => {
@@ -50,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+
